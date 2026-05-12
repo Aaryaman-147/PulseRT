@@ -77,3 +77,22 @@ A standard GRU cannot differentiate between a sensor dropping for 1 second vs. 3
 ✅ End-to-end GRU-D inference loop for real-time anomaly detection.
 
 ✅ Cyberpunk-aesthetic monitoring dashboard with CRT/neon styling.
+
+--- 
+
+## 🔮 Future Roadmap
+Phase 5: Mamba/SSM Integration: Replacing the GRU-D RNN cell with lightweight Structured State Space Models (Mamba) for infinite context windows and faster parallel training.
+
+Multi-Patient Scaling: Extending the Triton kernel batching to process 100+ simulated patient streams simultaneously.
+
+Real Telemetry Ingestion: Building a pipeline to ingest live HL7/FHIR streams rather than replaying MIMIC CSVs.
+
+Multimodal AI: Integrating categorical patient data (age, weight, diagnosis codes) alongside the time-series vitals.
+
+---
+
+## ⚠️ Limitations
+
+- Research Prototype: This system is built for benchmarking AI latency architectures. It is NOT a hospital deployment platform and lacks enterprise redundancy, Kubernetes scaling, or HIPAA compliance structures.
+
+- Hardware Constraints: Developed and tuned for consumer laptop hardware (6GB VRAM); larger batches or sequence lengths will require hyperparameter tuning.
