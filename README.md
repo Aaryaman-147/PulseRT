@@ -48,6 +48,6 @@
 
 ## 🕳️ Missing Data Handling & Triton Kernel Explanation
 
-Medical streams frequently drop packets due to sensor disconnection or recalibration.To solve this without CPU overhead, our custom Triton Kernel loads raw telemetry into SRAM, instantly detects -999.0 (NaN) flags, and generates a binary observation mask.Next, we execute Last Observation Carried Forward (LOCF) via Index Propagation. Instead of looping through the tensor to carry values forward, we construct an index matrix, zero out the indices of missing values, and use PyTorch's cummax (cumulative maximum) to instantly drag the last valid index down the column.Finally, we calculate the time gap ($\Delta t$) by subtracting the LOCF index from the current step index.
+Medical streams frequently drop packets due to sensor disconnection or recalibration. To solve this without CPU overhead, our custom Triton Kernel loads raw telemetry into SRAM, instantly detects -999.0 (NaN) flags, and generates a binary observation mask. Next, we execute Last Observation Carried Forward (LOCF) via Index Propagation. Instead of looping through the tensor to carry values forward, we construct an index matrix, zero out the indices of missing values, and use PyTorch's cummax (cumulative maximum) to instantly drag the last valid index down the column. Finally, we calculate the time gap ($\Delta t$) by subtracting the LOCF index from the current step index.
 
 ---
