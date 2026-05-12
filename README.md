@@ -32,9 +32,12 @@
 
 ```
 
+---
 ## 🚀 Technical Highlights
 
 - Zero-Copy Pipeline: The raw data stream is converted to a PyTorch tensor immediately. Triton preprocessing and GRU inference occur contiguously in VRAM, eliminating expensive Host-to-Device CPU transfers.
 - Triton Preprocessing: Standard pandas/numpy interpolation strategies destroy low-latency budgets. PulseRT utilizes custom Triton C++ level kernels via Python to perform massively parallel data masking.
 - Matrix LOCF: Replaced standard iterative forward-fill with highly optimized GPU index propagation using cummax and gather.
 - Dynamic Temporal Decay: Implements the GRU-D architecture to mathematically decay missing sensor readings toward empirical baselines based on the time since the last valid observation ($\Delta t$).
+
+---
