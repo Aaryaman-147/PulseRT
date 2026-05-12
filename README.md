@@ -6,3 +6,26 @@
 **PulseRT** is a research-engineering prototype of a GPU-accelerated biomedical time-series inference system. It addresses a critical bottleneck in healthcare AI: **preprocessing latency**. By pushing irregular physiological data handling (missing values, temporal gaps) directly to the GPU via custom Triton kernels, PulseRT achieves sub-10ms end-to-end inference latency on consumer hardware.
 
 ---
+
+
+## 🏗 Architecture Diagram
+
+```text
+[ MIMIC-III ICU Dataset ]
+         │ (Raw Telemetry: HR, SpO2, Resp)
+         ▼
+[ FastAPI Streaming Simulator ] ──(WebSocket)──▶ [ Next.js Cyberpunk Dashboard ]
+         │ (Batched Tensors)                               ▲ (Live Charting & Alerts)
+         ▼                                                 │
+[ Triton GPU Kernel ]                                      │
+   ├─ NaN Mask Generation                                  │
+   ├─ LOCF Index Propagation (Matrix ffill)                │
+   └─ Δt (Delta T) Extraction                              │
+         │ (Clean Tensor, Mask, Δt)                        │
+         ▼                                                 │
+[ PyTorch GRU-D Engine ]                                   │
+   ├─ Temporal Decay Factor (γ)                            │
+   ├─ Empirical Mean Reversion                             │
+   └─ Sequence Prediction                                  │
+         │ (Reconstruction Error / MSE)                    │
+         └─────────────────────────────────────────────────┘
