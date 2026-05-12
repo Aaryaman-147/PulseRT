@@ -44,6 +44,16 @@
 
 ## 📊 Performance Benchmarks
 
+*Hardware: NVIDIA RTX 4050 Laptop GPU (6GB VRAM), Ryzen 7 7840HS, 16GB RAM.*
+
+| Metric | Target | Achieved | Notes |
+| :--- | :--- | :--- | :--- |
+| **Pipeline Latency** | < 50.0 ms | **3.38 ms - 7.00 ms** | End-to-end (Preprocessing + Inference) |
+| **Untrained MSE** | N/A | ~4856.16 | High error during cold-start/random weights |
+| **Baseline GRU MSE** | < 100.0 | ~52.05 | Trained on perfectly interpolated offline data |
+| **GRU-D MSE** | < 100.0 | ~78.94 | Trained on dynamic temporal decay data |
+| **Throughput** | Real-time | 4+ Ticks/sec | Artificially throttled for UI simulation |
+
 ---
 
 ## 🕳️ Missing Data Handling & Triton Kernel Explanation
