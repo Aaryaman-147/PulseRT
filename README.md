@@ -96,3 +96,10 @@ Multimodal AI: Integrating categorical patient data (age, weight, diagnosis code
 - Research Prototype: This system is built for benchmarking AI latency architectures. It is NOT a hospital deployment platform and lacks enterprise redundancy, Kubernetes scaling, or HIPAA compliance structures.
 
 - Hardware Constraints: Developed and tuned for consumer laptop hardware (6GB VRAM); larger batches or sequence lengths will require hyperparameter tuning.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Disclaimer: Uses data from the MIMIC-III Clinical Database. Not for clinical use.
